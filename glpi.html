@@ -10,6 +10,35 @@
         function goBack() {
             window.location.href = 'index.html';
         }
+        async function loadData() {
+            const response = await fetch('glpi_data.json');
+            const data = await response.json();
+            return data;
+        }
+
+        // Функция для отображения проблем
+        async function showProblems(device) {
+            const problemsData = await loadData();
+            const problemsList = problemsData[device];
+            const problemContainer = document.getElementById("problem-container");
+            problemContainer.innerHTML = ''; // Очищаем предыдущие проблемы
+
+            problemsList.forEach(item => {
+                const problemButton = document.createElement("button");
+                problemButton.classList.add("problem-button");
+                problemButton.textContent = item.проблема;
+                problemButton.onclick = function() {
+                    showSolution(item.решение);
+                };
+                problemContainer.appendChild(problemButton);
+            });
+        }
+
+        // Функция для отображения решения
+        function showSolution(solution) {
+            const solutionContainer = document.getElementById("solution-container");
+            solutionContainer.innerHTML = `<p>${solution}</p>`;
+        }
     </script>
 </head>
 <body>
