@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Если точного совпадения не найдено, выводим ближайшее
         if (!exactMatchFound && bestMatch) {
-            searchResult.innerHTML = `<p><strong>Возможно, вы имели в виду:</strong></p><p>${bestMatch}</p>`;
+            searchResult.innerHTML = `<p><strong>Ответ на Ваш вопрос:</strong></p><p>${bestMatch}</p>`;
         } else if (!exactMatchFound) {
             searchResult.innerHTML = `<p>Решение не найдено. Попробуйте изменить запрос.</p>`;
         }
