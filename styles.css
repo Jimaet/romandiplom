@@ -109,3 +109,39 @@ body {
 .back-button:active {
     transform: scale(0.95);
 }
+.problem-container, .solution-container {
+    background: #3E5A3A; /* Тёмно-зелёный фон */
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+    width: 60%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 7px 12px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.problem-button {
+    background: #6A9E67; /* Светло-зелёный */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.problem-button:hover {
+    background: #5C8B5A;
+    transform: translateY(-3px);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.problem-button:active {
+    transform: scale(0.95);
+}
