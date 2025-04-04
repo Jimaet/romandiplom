@@ -26,7 +26,7 @@ body {
     flex: 1;
     border: none;
     background: none;
-    color: #FFFFFF; /* Яркий цвет текста */
+    color: #FFD700; /* Яркий цвет текста */
     font-size: 20px;
     font-weight: bold;
     outline: none;
@@ -70,12 +70,20 @@ body {
 }
 
 .button img {
-    width: 90px;  /* Увеличенный размер изображения */
-    height: 90px;
+    width: 60px;
+    height: 60px;
     margin-bottom: 10px;
 }
 
 .button span {
     font-size: 16px;
     font-weight: bold;
+}
+
+.category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
 }
