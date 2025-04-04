@@ -22,19 +22,18 @@ body {
     max-width: 500px;
 }
 
+.search-box .search-icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
 .search-box input {
     flex: 1;
     border: none;
     background: none;
-    color: #FFD700; /* Яркий цвет текста */
-    font-size: 20px;
-    font-weight: bold;
+    color: white;
+    font-size: 18px;
     outline: none;
-}
-
-.search-box .search-icon {
-    font-size: 20px;
-    margin-right: 10px;
 }
 
 .buttons-container {
