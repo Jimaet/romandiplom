@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сайт для службы безопасности</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Функция для перехода на другую страницу
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
 </head>
 <body>
     <div class="search-box">
@@ -13,29 +19,21 @@
     </div>
 
     <div class="buttons-container">
-        <div class="button">
-            <a href="macroscope.html">
-                <img src="img/mac.png" alt="Макроскоп">
-                <span>Макроскоп</span>
-            </a>
+        <div class="button" onclick="redirectTo('macroscope.html')">
+            <img src="img/mac.png" alt="Макроскоп">
+            <span>Макроскоп</span>
         </div>
-        <div class="button">
-            <a href="stahanovets.html">
-                <img src="img/sth.png" alt="Стахановец">
-                <span>Стахановец</span>
-            </a>
+        <div class="button" onclick="redirectTo('stahanovets.html')">
+            <img src="img/sth.png" alt="Стахановец">
+            <span>Стахановец</span>
         </div>
-        <div class="button">
-            <a href="glpi.html">
-                <img src="img/glpi.png" alt="GLPi">
-                <span>GLPi</span>
-            </a>
+        <div class="button" onclick="redirectTo('glpi.html')">
+            <img src="img/glpi.png" alt="GLPi">
+            <span>GLPi</span>
         </div>
-        <div class="button">
-            <a href="outlook.html">
-                <img src="img/out.png" alt="Outlook">
-                <span>Outlook</span>
-            </a>
+        <div class="button" onclick="redirectTo('outlook.html')">
+            <img src="img/out.png" alt="Outlook">
+            <span>Outlook</span>
         </div>
     </div>
 </body>
