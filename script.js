@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const files = ["macroscope_data.json", "stahanovets_data.json", "glpi_data.json", "outlook_data.json"];
         let bestMatch = null;
         let bestMatchScore = 0;
+        let exactMatchFound = false;
 
         for (const file of files) {
             try {
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Проверяем, есть ли точное вхождение
                         if (problem.includes(query)) {
                             searchResult.innerHTML = `<p><strong>Найдено решение:</strong></p><p>${solution}</p>`;
+                            exactMatchFound = true;
                             return;
                         }
 
@@ -43,9 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Если точного совпадения не найдено, выводим ближайшее
-        if (bestMatch) {
+        if (!exactMatchFound && bestMatch) {
             searchResult.innerHTML = `<p><strong>Возможно, вы имели в виду:</strong></p><p>${bestMatch}</p>`;
-        } else {
+        } else if (!exactMatchFound) {
             searchResult.innerHTML = `<p>Решение не найдено. Попробуйте изменить запрос.</p>`;
         }
     });
@@ -77,4 +79,3 @@ function levenshtein(a, b) {
 function redirectTo(page) {
     window.location.href = page;
 }
-
