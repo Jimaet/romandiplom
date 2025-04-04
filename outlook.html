@@ -10,7 +10,6 @@
         function goBack() {
             window.location.href = 'index.html';
         }
-
         // Функция для загрузки данных из JSON файла
         async function loadData() {
             const response = await fetch('outlook_data.json');
@@ -18,36 +17,29 @@
             return data;
         }
 
-        // Функция для отображения кнопок
-        async function displayButtons() {
-            const buttonsData = await loadData();
-            const buttonsContainer = document.querySelector(".buttons-container");
-            buttonsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых кнопок
+        // Функция для отображения проблем
+        async function showProblems(device) {
+            const problemsData = await loadData();
+            const problemsList = problemsData[device];
+            const problemContainer = document.getElementById("problem-container");
+            problemContainer.innerHTML = ''; // Очищаем предыдущие проблемы
 
-            buttonsData.forEach(item => {
-                const buttonDiv = document.createElement("div");
-                buttonDiv.classList.add("button");
-                
-                const buttonContent = document.createElement("div");
-                buttonContent.classList.add("button-content");
-                
-                const img = document.createElement("img");
-                img.src = item.image; // Путь к изображению
-                img.alt = item.title; // Альтернативный текст
-                
-                const span = document.createElement("span");
-                span.textContent = item.title;
-
-                buttonContent.appendChild(img);
-                buttonContent.appendChild(span);
-                buttonDiv.appendChild(buttonContent);
-
-                buttonsContainer.appendChild(buttonDiv);
+            problemsList.forEach(item => {
+                const problemButton = document.createElement("button");
+                problemButton.classList.add("problem-button");
+                problemButton.textContent = item.проблема;
+                problemButton.onclick = function() {
+                    showSolution(item.решение);
+                };
+                problemContainer.appendChild(problemButton);
             });
         }
 
-        // Загружаем данные при загрузке страницы
-        window.onload = displayButtons;
+        // Функция для отображения решения
+        function showSolution(solution) {
+            const solutionContainer = document.getElementById("solution-container");
+            solutionContainer.innerHTML = `<p>${solution}</p>`;
+        }
     </script>
 </head>
 <body>
@@ -57,9 +49,39 @@
     </div>
 
     <div class="buttons-container">
-        <!-- Кнопки будут добавляться сюда динамически -->
+        <div class="button">
+            <div class="button-content">
+                <img src="img/server.png" alt="Сервер">
+                <span>Сервер</span>
+            </div>
+        </div>
+        <div class="button">
+            <div class="button-content">
+                <img src="img/backup.png" alt="Резервное копирование">
+                <span>Резервное копирование</span>
+            </div>
+        </div>
+        <div class="button">
+            <div class="button-content">
+                <img src="img/update.png" alt="Обновления">
+                <span>Обновления</span>
+            </div>
+        </div>
+        <div class="button">
+            <div class="button-content">
+                <img src="img/mailbox.png" alt="Почтовые ящики">
+                <span>Почтовые ящики</span>
+            </div>
+        </div>
+    </div>
+<div id="problem-container" class="problem-container">
+        <!-- Проблемы будут отображаться здесь -->
     </div>
 
+    <!-- Контейнер для отображения решения -->
+    <div id="solution-container" class="solution-container">
+        <!-- Решение будет отображаться здесь -->
+    </div>
     <button class="back-button" onclick="goBack()">Назад</button>
 </body>
 </html>
