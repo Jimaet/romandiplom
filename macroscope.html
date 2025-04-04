@@ -10,7 +10,149 @@
         function goBack() {
             window.location.href = 'index.html';
         }
+
+        // Функция для загрузки данных из JSON файла
+        async function loadData() {
+            const response = await fetch('macroscope_data.json');
+            const data = await response.json();
+            return data;
+        }
+
+        // Функция для отображения проблем
+        async function showProblems(device) {
+            const problemsData = await loadData();
+            const problemsList = problemsData[device];
+            const problemContainer = document.getElementById("problem-container");
+            problemContainer.innerHTML = ''; // Очищаем предыдущие проблемы
+
+            problemsList.forEach(item => {
+                const problemButton = document.createElement("button");
+                problemButton.classList.add("problem-button");
+                problemButton.textContent = item.проблема;
+                problemButton.onclick = function() {
+                    showSolution(item.решение);
+                };
+                problemContainer.appendChild(problemButton);
+            });
+        }
+
+        // Функция для отображения решения
+        function showSolution(solution) {
+            const solutionContainer = document.getElementById("solution-container");
+            solutionContainer.innerHTML = `<p>${solution}</p>`;
+        }
     </script>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Контейнер для кнопок */
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .button-content {
+            text-align: center;
+        }
+
+        .button img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .button span {
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Контейнер для проблем */
+        .problem-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .problem-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .problem-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Контейнер для решения */
+        .solution-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для поиска */
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .search-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Кнопка "Назад" */
+        .back-button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
 </head>
 <body>
     <div class="search-box">
@@ -19,13 +161,13 @@
     </div>
 
     <div class="buttons-container">
-        <div class="button">
+        <div class="button" onclick="showProblems('Камера')">
             <div class="button-content">
                 <img src="img/camera.png" alt="Камера">
                 <span>Камера</span>
             </div>
         </div>
-        <div class="button">
+        <div class="button" onclick="showProblems('Коммутатор')">
             <div class="button-content">
                 <img src="img/switch.png" alt="Коммутатор">
                 <span>Коммутатор</span>
@@ -49,6 +191,16 @@
                 <span>Дисковый массив</span>
             </div>
         </div>
+    </div>
+
+    <!-- Контейнер для отображения проблем -->
+    <div id="problem-container" class="problem-container">
+        <!-- Проблемы будут отображаться здесь -->
+    </div>
+
+    <!-- Контейнер для отображения решения -->
+    <div id="solution-container" class="solution-container">
+        <!-- Решение будет отображаться здесь -->
     </div>
 
     <button class="back-button" onclick="goBack()">Назад</button>
