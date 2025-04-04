@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сайт для службы безопасности</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Функция для перехода на другую страницу
-        function redirectTo(page) {
-            window.location.href = page;
-        }
-    </script>
+    <script defer src="script.js"></script> <!-- Вынесем логику в отдельный файл -->
 </head>
 <body>
     <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" placeholder="Введите ваш вопрос...">
+        <input type="text" id="search-input" placeholder="Введите ваш вопрос...">
     </div>
+
+    <!-- Контейнер для отображения найденного решения -->
+    <div id="search-result" class="solution-container"></div>
 
     <div class="buttons-container">
         <div class="button" onclick="redirectTo('macroscope.html')">
