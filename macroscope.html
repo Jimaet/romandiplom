@@ -3,45 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Макроскоп</title>
+    <title>Макроскоп - Сайт для службы безопасности</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Функция для перехода на главную страницу
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
 </head>
 <body>
+    <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Введите ваш вопрос...">
+    </div>
+
     <div class="buttons-container">
         <div class="button">
-            <a href="#">
+            <div class="button-content">
                 <img src="img/camera.png" alt="Камера">
                 <span>Камера</span>
-            </a>
+            </div>
         </div>
         <div class="button">
-            <a href="#">
+            <div class="button-content">
                 <img src="img/switch.png" alt="Коммутатор">
                 <span>Коммутатор</span>
-            </a>
+            </div>
         </div>
         <div class="button">
-            <a href="#">
+            <div class="button-content">
                 <img src="img/server.png" alt="Сервер">
                 <span>Сервер</span>
-            </a>
+            </div>
         </div>
         <div class="button">
-            <a href="#">
+            <div class="button-content">
                 <img src="img/router.png" alt="Роутер">
                 <span>Роутер</span>
-            </a>
+            </div>
         </div>
         <div class="button">
-            <a href="#">
+            <div class="button-content">
                 <img src="img/storage.png" alt="Дисковый массив">
                 <span>Дисковый массив</span>
-            </a>
+            </div>
         </div>
     </div>
 
-    <div class="back-button-container">
-        <a href="index.html" class="back-button">Назад</a>
-    </div>
+    <button class="back-button" onclick="goBack()">Назад</button>
 </body>
 </html>
