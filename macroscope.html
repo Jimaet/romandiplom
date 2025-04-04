@@ -6,9 +6,31 @@
     <title>Макроскоп - Сайт для службы безопасности</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        // Функция для перехода на главную страницу
         function goBack() {
             window.location.href = 'index.html';
+        }
+
+        function loadProblems(device) {
+            // Загружаем JSON с проблемами и решениями для устройства
+            fetch(device + '_data.json') // Получаем файл с проблемами для устройства
+                .then(response => response.json()) // Преобразуем в JSON
+                .then(data => {
+                    const problems = data[device]; // Получаем список проблем для устройства
+                    const container = document.getElementById('problems-container');
+                    container.innerHTML = ''; // Очищаем контейнер
+
+                    problems.forEach(problem => {
+                        const button = document.createElement('button');
+                        button.innerHTML = problem.проблема;
+                        button.onclick = function() {
+                            alert(problem.решение);
+                        };
+                        container.appendChild(button);
+                    });
+                })
+                .catch(err => {
+                    console.error('Ошибка при загрузке данных:', err);
+                });
         }
     </script>
 </head>
@@ -20,35 +42,24 @@
 
     <div class="buttons-container">
         <div class="button">
-            <div class="button-content">
-                <img src="img/camera.png" alt="Камера">
-                <span>Камера</span>
-            </div>
+            <button onclick="loadProblems('Камера')">Камера</button>
         </div>
         <div class="button">
-            <div class="button-content">
-                <img src="img/switch.png" alt="Коммутатор">
-                <span>Коммутатор</span>
-            </div>
+            <button onclick="loadProblems('Коммутатор')">Коммутатор</button>
         </div>
         <div class="button">
-            <div class="button-content">
-                <img src="img/server.png" alt="Сервер">
-                <span>Сервер</span>
-            </div>
+            <button onclick="loadProblems('Сервер')">Сервер</button>
         </div>
         <div class="button">
-            <div class="button-content">
-                <img src="img/router.png" alt="Роутер">
-                <span>Роутер</span>
-            </div>
+            <button onclick="loadProblems('Роутер')">Роутер</button>
         </div>
         <div class="button">
-            <div class="button-content">
-                <img src="img/storage.png" alt="Дисковый массив">
-                <span>Дисковый массив</span>
-            </div>
+            <button onclick="loadProblems('Дисковый массив')">Дисковый массив</button>
         </div>
+    </div>
+
+    <div id="problems-container">
+        <!-- Здесь будут отображаться проблемы после загрузки -->
     </div>
 
     <button class="back-button" onclick="goBack()">Назад</button>
