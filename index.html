@@ -13,52 +13,30 @@
     </div>
 
     <div class="buttons-container">
-        <div class="button" onclick="showCategory('macroscope')">
-            <img src="img/mac.png" alt="Макроскоп">
-            <span>Макроскоп</span>
+        <div class="button">
+            <a href="macroscope.html">
+                <img src="img/mac.png" alt="Макроскоп">
+                <span>Макроскоп</span>
+            </a>
         </div>
-        <div class="button" onclick="showCategory('stahanovets')">
-            <img src="img/sth.png" alt="Стахановец">
-            <span>Стахановец</span>
+        <div class="button">
+            <a href="stahanovets.html">
+                <img src="img/sth.png" alt="Стахановец">
+                <span>Стахановец</span>
+            </a>
         </div>
-        <div class="button" onclick="showCategory('glpi')">
-            <img src="img/glpi.png" alt="GLPi">
-            <span>GLPi</span>
+        <div class="button">
+            <a href="glpi.html">
+                <img src="img/glpi.png" alt="GLPi">
+                <span>GLPi</span>
+            </a>
         </div>
-        <div class="button" onclick="showCategory('outlook')">
-            <img src="img/out.png" alt="Outlook">
-            <span>Outlook</span>
+        <div class="button">
+            <a href="outlook.html">
+                <img src="img/out.png" alt="Outlook">
+                <span>Outlook</span>
+            </a>
         </div>
     </div>
-
-    <!-- Категории -->
-    <div id="macroscope" class="category" style="display:none;">
-        <div class="button" onclick="openPage('camera')">Камера</div>
-        <div class="button" onclick="openPage('switch')">Коммутатор</div>
-        <div class="button" onclick="openPage('server')">Сервер</div>
-        <div class="button" onclick="openPage('router')">Роутер</div>
-        <div class="button" onclick="openPage('storage')">Дисковый массив</div>
-    </div>
-
-    <div id="stahanovets" class="category" style="display:none;">
-        <div class="button" onclick="openPage('server')">Сервер</div>
-        <div class="button" onclick="openPage('storage')">Хранилище данных</div>
-        <div class="button" onclick="openPage('backups')">Бэкапы</div>
-    </div>
-
-    <div id="glpi" class="category" style="display:none;">
-        <div class="button" onclick="openPage('access')">Права доступа</div>
-        <div class="button" onclick="openPage('regulation')">Регламент</div>
-        <div class="button" onclick="openPage('db')">Базы данных</div>
-    </div>
-
-    <div id="outlook" class="category" style="display:none;">
-        <div class="button" onclick="openPage('server')">Сервер</div>
-        <div class="button" onclick="openPage('backup')">Резервное копирование</div>
-        <div class="button" onclick="openPage('updates')">Обновления</div>
-        <div class="button" onclick="openPage('mailboxes')">Почтовые ящики</div>
-    </div>
-
-    <script src="scripts.js"></script>
 </body>
 </html>
