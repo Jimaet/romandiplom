@@ -4,35 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сайт для службы безопасности</title>
+    <link rel="stylesheet" href="load.css"> <!-- Подключаем стили для загрузочного экрана -->
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script> <!-- Вынесем логику в отдельный файл -->
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="search-input" placeholder="Введите ваш вопрос...">
+    <!-- Загрузочный экран -->
+    <div id="loading-screen">
+        <div class="loading-text">loading...</div>
+        <div class="title">Ешь Сейчас</div>
+        <div class="subtitle">will be launched</div>
+        <div class="loader"></div>
     </div>
 
-    <!-- Контейнер для отображения найденного решения -->
-    <div id="search-result" class="solution-container"></div>
+    <!-- Основной контент сайта -->
+    <div id="main-content" style="display: none;">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Введите ваш вопрос...">
+        </div>
 
-    <div class="buttons-container">
-        <div class="button" onclick="redirectTo('macroscope.html')">
-            <img src="img/mac.png" alt="Макроскоп">
-            <span>Макроскоп</span>
-        </div>
-        <div class="button" onclick="redirectTo('stahanovets.html')">
-            <img src="img/sth.png" alt="Стахановец">
-            <span>Стахановец</span>
-        </div>
-        <div class="button" onclick="redirectTo('glpi.html')">
-            <img src="img/glpi.png" alt="GLPi">
-            <span>GLPi</span>
-        </div>
-        <div class="button" onclick="redirectTo('outlook.html')">
-            <img src="img/out.png" alt="Outlook">
-            <span>Outlook</span>
+        <!-- Контейнер для отображения найденного решения -->
+        <div id="search-result" class="solution-container"></div>
+
+        <div class="buttons-container">
+            <div class="button" onclick="redirectTo('macroscope.html')">
+                <img src="img/mac.png" alt="Макроскоп">
+                <span>Макроскоп</span>
+            </div>
+            <div class="button" onclick="redirectTo('stahanovets.html')">
+                <img src="img/sth.png" alt="Стахановец">
+                <span>Стахановец</span>
+            </div>
+            <div class="button" onclick="redirectTo('glpi.html')">
+                <img src="img/glpi.png" alt="GLPi">
+                <span>GLPi</span>
+            </div>
+            <div class="button" onclick="redirectTo('outlook.html')">
+                <img src="img/out.png" alt="Outlook">
+                <span>Outlook</span>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Скрытие загрузочного экрана через 3 секунды
+        setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }, 5000);
+    </script>
 </body>
 </html>
