@@ -12,7 +12,7 @@
     <!-- Загрузочный экран -->
     <div id="loading-screen">
         <div class="loading-text">loading...</div>
-        <div class="title">Ешь Сейчас</div>
+        <div class="title">Помощник</div>
         <div class="subtitle">will be launched</div>
         <div class="loader"></div>
     </div>
@@ -48,11 +48,21 @@
     </div>
 
     <script>
-        // Скрытие загрузочного экрана через 3 секунды
-        setTimeout(() => {
+        // Проверка, был ли уже показан загрузочный экран
+        if (!localStorage.getItem('visited')) {
+            // Если нет, показываем экран и сохраняем информацию о первом визите
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }, 3000);
+
+            // Помечаем, что пользователь был здесь
+            localStorage.setItem('visited', 'true');
+        } else {
+            // Если уже был, сразу скрываем загрузочный экран и показываем контент
             document.getElementById('loading-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
-        }, 5000);
+        }
     </script>
 </body>
 </html>
