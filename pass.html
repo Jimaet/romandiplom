@@ -7,45 +7,72 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f8f9fa, #e0e0e0);
-      padding: 2rem;
+      background: #2E2E2E;
+      color: white;
+      text-align: center;
+      margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
 
     h1 {
-      color: #333;
+      margin-bottom: 20px;
     }
 
-    input[type="password"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-      margin-top: 1rem;
+    .password-box {
+      display: flex;
+      align-items: center;
+      background: #4E7C4A;
+      border-radius: 30px;
+      padding: 10px 20px;
+      box-shadow: 7px 12px 15px rgba(0, 0, 0, 0.3);
+      width: 60%;
+      max-width: 500px;
+    }
+
+    .password-box input {
+      flex: 1;
+      border: none;
+      background: none;
+      color: white;
+      font-size: 18px;
+      outline: none;
     }
 
     #strength {
-      margin-top: 10px;
+      margin-top: 20px;
       font-weight: bold;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      background: #3E5A3A;
+      box-shadow: 7px 12px 15px rgba(0, 0, 0, 0.3);
+      width: 60%;
+      max-width: 500px;
     }
 
     .weak {
-      color: red;
+      background: #8B3A3A;
     }
 
     .medium {
-      color: orange;
+      background: #C2832D;
     }
 
     .strong {
-      color: green;
+      background: #3A8B45;
     }
+
   </style>
 </head>
 <body>
   <h1>Проверка надежности пароля</h1>
-  <input type="password" id="password" placeholder="Введите пароль" />
+  <div class="password-box">
+    <input type="password" id="password" placeholder="Введите пароль" />
+  </div>
   <div id="strength">Надежность: —</div>
 
   <script>
@@ -59,20 +86,20 @@
       if (password.length >= 8) strength++;
       if (/[A-Z]/.test(password) && /[a-z]/.test(password)) strength++;
       if (/\d/.test(password)) strength++;
-      if (/[!@#$%^&*()_+=[\]{};':"\\|,.<>/?`~\-]/.test(password)) strength++;
+      if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/.test(password)) strength++;
 
+      strengthText.className = "";
       if (password.length === 0) {
         strengthText.textContent = "Надежность: —";
-        strengthText.className = "";
       } else if (strength <= 1) {
         strengthText.textContent = "Надежность: Слабый пароль";
-        strengthText.className = "weak";
+        strengthText.classList.add("weak");
       } else if (strength === 2 || strength === 3) {
         strengthText.textContent = "Надежность: Средний пароль";
-        strengthText.className = "medium";
+        strengthText.classList.add("medium");
       } else if (strength === 4) {
         strengthText.textContent = "Надежность: Сильный пароль";
-        strengthText.className = "strong";
+        strengthText.classList.add("strong");
       }
     });
   </script>
