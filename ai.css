@@ -1,64 +1,153 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
+    background: #2E2E2E;
+    color: white;
     padding: 20px;
-    background: #f0f0f0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
 #chat {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
+    background: #3E5A3A;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px 20px 20px;
+    border-radius: 20px;
+    box-shadow: 7px 12px 15px rgba(0, 0, 0, 0.3);
     position: relative;
+    animation: fadeIn 0.8s ease;
 }
 
 #backBtn {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #0077cc;
+    top: 15px;
+    left: 15px;
+    background: #4E7C4A;
     color: white;
+    padding: 10px 16px;
     border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: 25px;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 5px 8px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#backBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px 12px 18px rgba(0, 0, 0, 0.4);
+}
+
+#backBtn:active {
+    transform: scale(0.95);
 }
 
 .msg {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 10px;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 15px;
+    max-width: 80%;
+    line-height: 1.4;
+    animation: slideIn 0.3s ease;
 }
 
 .user {
-    background: #d0f0ff;
+    background: #6A9E67;
+    align-self: flex-end;
     text-align: right;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
 }
 
 .bot {
-    background: #e8e8e8;
+    background: #4E7C4A;
+    align-self: flex-start;
     text-align: left;
+    margin-right: auto;
+    border-bottom-left-radius: 0;
 }
 
 #inputArea {
     display: flex;
-    margin-top: 20px;
+    margin-top: 30px;
+    gap: 15px;
+    align-items: center;
+    animation: fadeInUp 0.5s ease;
 }
 
 #text {
     flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    padding: 12px 16px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background: #2E2E2E;
+    color: white;
+    box-shadow: inset 2px 4px 8px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.2s ease;
+}
+
+#text:focus {
+    box-shadow: 0 0 0 2px #6A9E67;
 }
 
 button {
-    margin-left: 10px;
-    padding: 10px;
+    padding: 12px 18px;
     border: none;
-    background: #0077cc;
+    border-radius: 25px;
+    background: #6A9E67;
     color: white;
-    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 5px 8px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px 12px 18px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    #chat {
+        padding: 20px 15px;
+    }
+
+    #inputArea {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #text {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
 }
