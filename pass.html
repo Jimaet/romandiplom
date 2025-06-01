@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Проверка пароля</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e0e0e0);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      margin-top: 1rem;
+    }
+
+    #strength {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .weak {
+      color: red;
+    }
+
+    .medium {
+      color: orange;
+    }
+
+    .strong {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Проверка надежности пароля</h1>
+  <input type="password" id="password" placeholder="Введите пароль" />
+  <div id="strength">Надежность: —</div>
+
+  <script>
+    const passwordInput = document.getElementById("password");
+    const strengthText = document.getElementById("strength");
+
+    passwordInput.addEventListener("input", function () {
+      const password = passwordInput.value;
+      let strength = 0;
+
+      if (password.length >= 8) strength++;
+      if (/[A-Z]/.test(password) && /[a-z]/.test(password)) strength++;
+      if (/\d/.test(password)) strength++;
+      if (/[!@#$%^&*()_+=[\]{};':"\\|,.<>/?`~\-]/.test(password)) strength++;
+
+      if (password.length === 0) {
+        strengthText.textContent = "Надежность: —";
+        strengthText.className = "";
+      } else if (strength <= 1) {
+        strengthText.textContent = "Надежность: Слабый пароль";
+        strengthText.className = "weak";
+      } else if (strength === 2 || strength === 3) {
+        strengthText.textContent = "Надежность: Средний пароль";
+        strengthText.className = "medium";
+      } else if (strength === 4) {
+        strengthText.textContent = "Надежность: Сильный пароль";
+        strengthText.className = "strong";
+      }
+    });
+  </script>
+</body>
+</html>
