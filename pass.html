@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Проверка пароля</title>
+  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -76,6 +77,8 @@
   <div id="strength">Надежность: —</div>
 
   <script>
+    function goBack() {
+            window.location.href = 'index.html';
     const passwordInput = document.getElementById("password");
     const strengthText = document.getElementById("strength");
 
@@ -103,5 +106,6 @@
       }
     });
   </script>
+  <button class="back-button" onclick="goBack()">Назад</button>
 </body>
 </html>
