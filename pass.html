@@ -1,10 +1,10 @@
+</html>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Проверка пароля</title>
-  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -93,14 +93,10 @@
 </head>
 <body>
   <h1>Проверка надежности пароля</h1>
-  <div class="password-box">
-    <input type="password" id="password" placeholder="Введите пароль" />
-  </div>
+  <input type="password" id="password" placeholder="Введите пароль" />
   <div id="strength">Надежность: —</div>
 
   <script>
-    function goBack() {
-            window.location.href = 'index.html';
     const passwordInput = document.getElementById("password");
     const strengthText = document.getElementById("strength");
 
@@ -111,23 +107,23 @@
       if (password.length >= 8) strength++;
       if (/[A-Z]/.test(password) && /[a-z]/.test(password)) strength++;
       if (/\d/.test(password)) strength++;
-      if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/.test(password)) strength++;
+      if (/[!@#$%^&*()_+=[\]{};':"\\|,.<>/?`~\-]/.test(password)) strength++;
 
-      strengthText.className = "";
       if (password.length === 0) {
         strengthText.textContent = "Надежность: —";
+        strengthText.className = "";
       } else if (strength <= 1) {
         strengthText.textContent = "Надежность: Слабый пароль";
-        strengthText.classList.add("weak");
+        strengthText.className = "weak";
       } else if (strength === 2 || strength === 3) {
         strengthText.textContent = "Надежность: Средний пароль";
-        strengthText.classList.add("medium");
+        strengthText.className = "medium";
       } else if (strength === 4) {
         strengthText.textContent = "Надежность: Сильный пароль";
-        strengthText.classList.add("strong");
+        strengthText.className = "strong";
       }
     });
   </script>
-  
 </body>
 </html>
+
