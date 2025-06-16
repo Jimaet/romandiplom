@@ -1,37 +1,10 @@
 export async function handler(event) {
-  try {
-    // Проверка, что есть тело запроса
-    if (!event.body) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Пустое тело запроса" }),
-      };
-    }
-
-    let prompt;
-    try {
-      const parsed = JSON.parse(event.body);
-      prompt = parsed.prompt;
-    } catch (err) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Невалидный JSON в теле запроса" }),
-      };
-    }
-
-    // Проверка, что есть prompt
-    if (!prompt || typeof prompt !== "string") {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Параметр 'prompt' отсутствует или не строка" }),
-      };
-    }
-
-    // Запрос к Yandex GPT
+    const { prompt } = JSON.parse(event.body);
+  
     const response = await fetch("https://llm.api.cloud.yandex.net/foundationModels/v1/completion", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer AQVNzn4lu8GL0qtDP94czMV0uDfq9AuP8JqxqFxA",
+        "Authorization": "Bearer AQVNzn4lu8GL0qtDP94czMV0uDfq9AuP8JqxqFxA", // токен спрятан на серверной стороне
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -47,36 +20,17 @@ export async function handler(event) {
         ],
       }),
     });
-
+  
     const data = await response.json();
-
-    // Проверка ответа от Yandex
-    if (
-      !data.result ||
-      !data.result.alternatives ||
-      !data.result.alternatives[0] ||
-      !data.result.alternatives[0].message ||
-      !data.result.alternatives[0].message.text
-    ) {
-      return {
-        statusCode: 502,
-        body: JSON.stringify({ error: "Некорректный ответ от Yandex GPT", fullResponse: data }),
-      };
-    }
-
+  
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "*", // разрешаем доступ с фронта
       },
       body: JSON.stringify({
         reply: data.result.alternatives[0].message.text,
       }),
     };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message || "Неизвестная ошибка" }),
-    };
   }
-}
+  
