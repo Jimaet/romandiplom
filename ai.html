@@ -22,36 +22,40 @@
         }
 
         function addMessage(text, role) {
-            const div = document.createElement('div');
-            div.className = 'msg ' + role;
-            div.textContent = text;
-            document.getElementById('messages').appendChild(div);
-            div.scrollIntoView({ behavior: 'smooth' });
-        }
+    const div = document.createElement('div');
+    div.className = 'msg ' + role;
+    div.textContent = text;
+    document.getElementById('messages').appendChild(div);
+    div.scrollIntoView({ behavior: 'smooth' });
+}
 
-        async function send() {
-            const input = document.getElementById('text');
-            const msg = input.value.trim();
-            if (!msg) return;
+async function send() {
+    const input = document.getElementById('text');
+    const msg = input.value.trim();
+    if (!msg) return;
 
-            addMessage(msg, 'user');
-            input.value = '';
+    console.log("👉 Отправляю в запрос:", msg); // ← вот это вставь
 
-            try {
-                const res = await fetch("/.netlify/functions/askgpt", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ prompt: msg })
-                });
+    addMessage(msg, 'user');
+    input.value = '';
 
-                const data = await res.json();
-                addMessage(data.reply, 'bot');
-            } catch (err) {
-                addMessage("Ошибка: " + err.message, 'bot');
-            }
-        }
-    </script>
+    try {
+        const res = await fetch("/.netlify/functions/askgpt", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ prompt: msg })
+        });
+
+        const data = await res.json();
+        console.log("👈 Ответ от сервера:", data);
+        addMessage(data.reply || data.error || "Нет ответа", 'bot');
+    } catch (err) {
+        console.error("❌ Ошибка:", err);
+        addMessage("Ошибка: " + err.message, 'bot');
+    }
+}
+</script>
 </body>
 </html>
